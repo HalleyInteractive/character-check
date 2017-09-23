@@ -1,3 +1,6 @@
+var timerInitialValue = 60 * 60 * 1000;
+var timerStart = null;
+var timerInterval = null;
 const characters = Array.from(document.getElementsByClassName('character'));
 const digits = Array.from(document.getElementsByClassName('digit'));
 characters.map(c => c.addEventListener('keyup', characterKeypressHandler));
@@ -34,4 +37,25 @@ function setOutput(output) {
     for(let i = 0; i < digits.length; i++) {
         digits[i].innerHTML = output.substr(i,1);
     }
+}
+
+function startTimer() {
+    timerStart = new Date();
+    if(timerInterval === null) {
+        timerInterval = setInterval(timerTick, 67);
+    }
+}
+
+function stopTimer() {
+
+}
+
+function pauseTimer() {
+
+}
+
+function timerTick() {
+    let timeLeft = new Date(timerInitialValue - new Date().getTime() - timerStart.getTime());
+    console.log(timeLeft.toISOString().substr(14, 5))
+
 }
