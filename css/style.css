@@ -5,7 +5,7 @@ body, html {
     padding: 0;
     background-color: #F5D5ED;
 }
-.container {
+#container {
     width: 100%;
     height: 100%;
     padding: 50px;
@@ -15,9 +15,9 @@ body, html {
     grid-template-columns: auto;
     grid-template-areas: 
       "timer"
-      "controls"
       "input"
       "output";
+      background-color: #F5D5ED;
 }
 
 .timer-container {
@@ -32,8 +32,10 @@ body, html {
 }
 
 .controls-container {
-    grid-area: controls;
     display: flex;
+    position: absolute;
+    right: 5px;
+    top: 5px;
     align-items: center;
     justify-content: center;
 }
@@ -92,6 +94,7 @@ body, html {
     cursor: pointer;
     color: #FFFFFF;
     width: 50px;
+    height: 18px;
     text-align: center;
     user-select: none;
     font-family: 'Share Tech Mono', monospace;
@@ -99,4 +102,11 @@ body, html {
 
 #pause-button {
     display:none;
+}
+
+#fullscreen-button { 
+    background-image: url('../img/fullscreen-icon.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width: 18px;
 }

@@ -7,10 +7,13 @@ const characters = Array.from(document.getElementsByClassName('character'));
 const digits = Array.from(document.getElementsByClassName('digit'));
 const startButton = document.getElementById('start-button');
 const pauseButton = document.getElementById('pause-button');
+const fullscreenButton = document.getElementById('fullscreen-button');
+const container = document.getElementById('container');
 
 characters.map(c => c.addEventListener('keyup', characterKeypressHandler));
 startButton.addEventListener('click', startTimer);
 pauseButton.addEventListener('click', pauseTimer);
+fullscreenButton.addEventListener('click', toggleFullscreen);
 
 function characterKeypressHandler(event) {
     if(event.code == 'Backspace' && event.target.previousElementSibling) {
@@ -70,4 +73,23 @@ function timerTick() {
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
     time.innerHTML = minutes + ":" + seconds;
+}
+
+function toggleFullscreen() {
+  if(
+    document.fullscreenElement ||
+    document.webkitFullscreenElement ||
+    document.mozFullScreenElement ||
+    document.msFullscreenElement
+  ) {
+    if (document.exitFullscreen) { document.exitFullscreen(); }
+    else if (document.mozCancelFullScreen) { document.mozCancelFullScreen(); }
+    else if (document.webkitExitFullscreen) { document.webkitExitFullscreen(); }
+    else if (document.msExitFullscreen) { document.msExitFullscreen(); }
+  } else {
+    if (container.requestFullscreen) { container.requestFullscreen(); }
+    else if (container.mozRequestFullScreen) { container.mozRequestFullScreen(); }
+    else if (container.webkitRequestFullscreen) { container.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT); }
+    else if (container.msRequestFullscreen) { container.msRequestFullscreen(); }
+  }
 }
