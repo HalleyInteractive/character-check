@@ -47,6 +47,8 @@ function setOutput(output) {
 }
 
 function startTimer() {
+    startButton.style.display = 'none';
+    pauseButton.style.display = 'block';
     timerStart = Date.now();
     if(timerInterval === null) {
         timerInterval = setInterval(timerTick, 100);
@@ -54,6 +56,8 @@ function startTimer() {
 }
 
 function pauseTimer() {
+    startButton.style.display = 'block';
+    pauseButton.style.display = 'none';
     clearInterval(timerInterval);
     timerInterval = null;
     timerInitialValue = timerInitialValue - (((Date.now() - timerStart) / 1000) | 0);
