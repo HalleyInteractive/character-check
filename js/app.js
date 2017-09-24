@@ -34,7 +34,7 @@ function characterKeypressHandler(event) {
 function calculateOutput() {
     let total = 0;
     characters.map((c, i) => {
-        let value = parseInt(c.value.charCodeAt(0) * i);
+        let value = parseInt(c.value.charCodeAt(0) * i+2);
         if(!isNaN(value)) {
             total += value;
         }

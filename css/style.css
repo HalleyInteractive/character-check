@@ -74,12 +74,17 @@ body, html {
     padding: 0;
     width: 60px;
     height: 60px;
-    border: 1px solid #F5D5ED;
+    border: 2px solid #F5D5ED;
     text-align: center;
-    margin-left: -1px;
+    border-radius: 8px;
     font-size: 50px;
     background-color: #EBB9DF;
     color: #FFFFFF;
+}
+
+.character:focus {
+    outline:none;
+    border: 2px solid #6765EE;
 }
 
 .space {
