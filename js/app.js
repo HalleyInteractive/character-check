@@ -1,9 +1,16 @@
-var timerInitialValue = 60 * 60 * 1000;
+var timerInitialValue = 45 * 60;
 var timerStart = null;
 var timerInterval = null;
+
+const time = document.getElementById('time');
 const characters = Array.from(document.getElementsByClassName('character'));
 const digits = Array.from(document.getElementsByClassName('digit'));
+const startButton = document.getElementById('start-button');
+const pauseButton = document.getElementById('pause-button');
+
 characters.map(c => c.addEventListener('keyup', characterKeypressHandler));
+startButton.addEventListener('click', startTimer);
+pauseButton.addEventListener('click', pauseTimer);
 
 function characterKeypressHandler(event) {
     if(event.code == 'Backspace' && event.target.previousElementSibling) {
@@ -40,22 +47,23 @@ function setOutput(output) {
 }
 
 function startTimer() {
-    timerStart = new Date();
+    timerStart = Date.now();
     if(timerInterval === null) {
-        timerInterval = setInterval(timerTick, 67);
+        timerInterval = setInterval(timerTick, 100);
     }
 }
 
-function stopTimer() {
-
-}
-
 function pauseTimer() {
-
+    clearInterval(timerInterval);
+    timerInterval = null;
+    timerInitialValue = timerInitialValue - (((Date.now() - timerStart) / 1000) | 0);
 }
 
 function timerTick() {
-    let timeLeft = new Date(timerInitialValue - new Date().getTime() - timerStart.getTime());
-    console.log(timeLeft.toISOString().substr(14, 5))
-
+    let diff = timerInitialValue - (((Date.now() - timerStart) / 1000) | 0);
+    let minutes = (diff / 60) | 0;
+    let seconds = (diff % 60) | 0;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    time.innerHTML = minutes + ":" + seconds;
 }
