@@ -1,4 +1,4 @@
-var timerInitialValue = 45 * 60;
+var timerInitialValue = 60 * 60;
 var timerStart = null;
 var timerInterval = null;
 
